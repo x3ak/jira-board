@@ -4,14 +4,15 @@ import {IssueComponent} from "./issue.component";
 @Component({
     selector: 'issue-list',
     template: `
-<ul>
-    <li *ngFor="#issue of issues">
-        <jb-issue [issue]="issue">issue content</jb-issue>
-    </li>
-</ul>
+        <div class="issue-list">
+            <h2>{{title}}</h2>
+            <jb-issue [issue]="issue" *ngFor="#issue of issues">issue content</jb-issue>
+        </div>
     `,
     directives: [IssueComponent],
+    styles: ['.issue-list {display: flex; flex-direction: column; margin-right: 10px} jb-issue {margin-bottom: 10px}'],
 })
 export class IssueListComponent {
     @Input() issues:Issue[];
+    @Input() title:any;
 }

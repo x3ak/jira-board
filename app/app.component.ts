@@ -1,78 +1,50 @@
 import {Component, Input} from 'angular2/core';
 import {IssueService} from "./issue.service";
 import {Issue} from "./issue";
-import {StatusFilterPipe} from "./status-filter.pipe";
 import {IssueListComponent} from "./issue-list.component";
+import {StatusFilterPipe, NotSubTaskPipe} from "./issue.pipe";
 
 @Component({
     selector: 'my-app',
-    template: `<h3>Board:</h3>
+    template: `
+<label>
+    <input type="checkbox" [(ngModel)]="showSubTasks"> include sub tasks
+</label>
 
-<table>
-    <tr>
-        <td>Open</td>
-        <td>In Progress</td>
-        <td>Resolved</td>
-    </tr>
-    <tr>
-        <td>
-            <issue-list [issues]="issues|statusFilter:{name:'Open'}"></issue-list>
-        </td>
-        <td>
-            <issue-list [issues]="issues|statusFilter:{name:'In Progress'}"></issue-list>
-        </td>
-        <td>
-            <issue-list [issues]="issues|statusFilter:{name:'Resolved'}"></issue-list>
-        </td>
-    </tr>
-</table>
+<div class="board">
+    <issue-list *ngFor="#status of statuses" [issues]="issues|includeSubTask:showSubTasks|statusFilter:{name:status}" [title]="status">
+        loading...
+    </issue-list>
+</div>
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
     `,
     providers: [IssueService],
     directives: [IssueListComponent],
-    pipes: [StatusFilterPipe],
+    pipes: [StatusFilterPipe, NotSubTaskPipe],
+    styles: ['.board {display: flex; align-content:stretch;} issue-list {width: 100%}']
 
 })
 export class AppComponent {
-    constructor (private _issueService: IssueService) {}
     errorMessage: string;
     issues: Issue[];
-    ngOnInit() { this.getIssues(); }
+    statuses:string[] = [];
+    showSubTasks:boolean = false;
+    constructor (private _issueService: IssueService) {}
+    ngOnInit() {
+        this.getIssues();
+    }
     getIssues() {
         this._issueService.getIssues()
             .subscribe(issues => {
                 this.issues = issues;
+
+                this.issues.forEach(issue => {
+                    var status:string = issue.fields.status.name;
+                    if (this.statuses.indexOf(status) == -1) {
+                        this.statuses.push(status);
+                    }
+                });
             },
             error =>  this.errorMessage = <any>error);
     }
 }
-
-
-// // import {IssueService} from "../issue.service";
-// // import {Issue} from "../issue";
-//
-// @Component({
-//     selector: 'jira-board',
-//     template: `
-//   <h3>Board:</h3>
-//   <ul>
-//     <li *ngFor="#issue of issues">
-//       {{ issue.key }}
-//     </li>
-//   </ul>
-//   <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
-//   `,
-// })
-// export class JiraBoardComponent // implements OnInit
-// {
-//     // constructor (private _service: IssueService) {}
-//     // errorMessage: string;
-//     // issues: Issue[];
-//     // ngOnInit() { this.getIssues(); }
-//     // getIssues() {
-//     //     this._service.getIssues()
-//     //         .subscribe(
-//     //             issues => this.issues = issues,
-//     //             error =>  this.errorMessage = <any>error);
-//     // }
-// }

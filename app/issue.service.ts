@@ -8,7 +8,8 @@ import {Observable} from "rxjs/Observable";
 export class IssueService {
     constructor (private http: Http) {}
 
-    private _url = 'http://jira-report.cloud.rdlp/api-proxy.php/search?jql=project%20=%20RDLP%20AND%20fixVersion%20=%207.0.0.0%20AND%20labels%20=%20ITERATION-1%20ORDER%20BY%20status%20ASC,%20priority%20DESC,%20key%20DESC';
+    private _url = 'http://jira-report.cloud.rdlp/api-proxy.php/search?fields=status,issuetype,assignee,summary,parent&jql=project%20=%20RDLP%20AND%20fixVersion%20=%207.0.0.0%20AND%20labels%20=%20ITERATION-1%20ORDER%20BY%20status%20ASC,%20priority%20DESC,%20key%20DESC';
+    // private _url = 'http://jira-report.cloud.rdlp/api-proxy.php/search?fields=*all&jql=project%20=%20RDLP%20AND%20fixVersion%20=%207.0.0.0%20AND%20labels%20=%20ITERATION-1%20ORDER%20BY%20status%20ASC,%20priority%20DESC,%20key%20DESC';
     // private _url = 'search.json';
 
     getIssues () {

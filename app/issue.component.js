@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./issue-status.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "./issue-assignee.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,15 +10,15 @@ System.register(["angular2/core", "./issue-status.component"], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, issue_status_component_1;
+    var core_1, issue_assignee_component_1;
     var IssueComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             },
-            function (issue_status_component_1_1) {
-                issue_status_component_1 = issue_status_component_1_1;
+            function (issue_assignee_component_1_1) {
+                issue_assignee_component_1 = issue_assignee_component_1_1;
             }],
         execute: function() {
             IssueComponent = (function () {
@@ -31,8 +31,9 @@ System.register(["angular2/core", "./issue-status.component"], function(exports_
                 IssueComponent = __decorate([
                     core_1.Component({
                         selector: 'jb-issue',
-                        template: "\n        <span>{{issue.key}} - {{issue.fields.summary}}</span>\n        <issue-status [status]=\"issue.fields.status\">status</issue-status>\n    ",
-                        directives: [issue_status_component_1.IssueStatusComponent]
+                        template: "\n    <div class=\"jb-issue\">\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    </div>\n    ",
+                        directives: [issue_assignee_component_1.IssueAssigneeComponent],
+                        styles: ['.jb-issue {border: 1px solid silver; padding: 5px}']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueComponent);
