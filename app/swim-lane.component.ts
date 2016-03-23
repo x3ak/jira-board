@@ -1,22 +1,20 @@
 import {Component, Input, OnInit} from "angular2/core";
 import {Issue} from "./issue";
-import {IssueListComponent} from "./issue-list.component";
+import {IssueListComponent, StatusColumnsComponent} from "./issue-list.component";
 import {IssueComponent} from "./issue.component";
 import {StatusFilterPipe} from "./issue.pipe";
 @Component({
     selector: 'swim-lane',
     template: `
     <div class="title">{{issue.key}} : {{issue.fields.summary}}</div>
-    <div class="issue-lists">
-        <issue-list *ngFor="#status of statuses" [issues]="subtasks|statusFilter:{name:status}">...</issue-list>
-    </div>
+    <status-columns [issues]="subtasks" [statuses]="statuses">...</status-columns>
     `,
     styles: [
         ':host {position: relative}',
         '.issue-lists {display: flex; flex-direction: row}',
         '.title {border-bottom: 1px solid silver;}',
     ],
-    directives: [IssueListComponent, IssueComponent],
+    directives: [IssueListComponent, IssueComponent, StatusColumnsComponent],
     pipes: [StatusFilterPipe],
 })
 export class SwimLaneComponent implements OnInit {

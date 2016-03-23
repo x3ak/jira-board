@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./issue.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "./issue.component", "./issue.pipe"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(["angular2/core", "./issue.component"], function(exports_1, cont
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, issue_component_1;
-    var IssueListComponent;
+    var core_1, issue_component_1, issue_pipe_1;
+    var IssueListComponent, StatusColumnsComponent;
     return {
         setters:[
             function (core_1_1) {
@@ -19,6 +19,9 @@ System.register(["angular2/core", "./issue.component"], function(exports_1, cont
             },
             function (issue_component_1_1) {
                 issue_component_1 = issue_component_1_1;
+            },
+            function (issue_pipe_1_1) {
+                issue_pipe_1 = issue_pipe_1_1;
             }],
         execute: function() {
             IssueListComponent = (function () {
@@ -43,6 +46,30 @@ System.register(["angular2/core", "./issue.component"], function(exports_1, cont
                 return IssueListComponent;
             }());
             exports_1("IssueListComponent", IssueListComponent);
+            StatusColumnsComponent = (function () {
+                function StatusColumnsComponent() {
+                }
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], StatusColumnsComponent.prototype, "issues", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Array)
+                ], StatusColumnsComponent.prototype, "statuses", void 0);
+                StatusColumnsComponent = __decorate([
+                    core_1.Component({
+                        selector: 'status-columns',
+                        template: "\n        <issue-list *ngFor=\"#status of statuses\" [issues]=\"issues|statusFilter:{name:status}\">...</issue-list>\n    ",
+                        directives: [IssueListComponent],
+                        pipes: [issue_pipe_1.StatusFilterPipe],
+                        styles: [':host {width: 100%; display: flex; flex-direction: row;}']
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], StatusColumnsComponent);
+                return StatusColumnsComponent;
+            }());
+            exports_1("StatusColumnsComponent", StatusColumnsComponent);
         }
     }
 });

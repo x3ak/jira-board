@@ -49,13 +49,13 @@ System.register(["angular2/core", "./issue-list.component", "./issue.component",
                 SwimLaneComponent = __decorate([
                     core_1.Component({
                         selector: 'swim-lane',
-                        template: "\n    <div class=\"title\">{{issue.key}} : {{issue.fields.summary}}</div>\n    <div class=\"issue-lists\">\n        <issue-list *ngFor=\"#status of statuses\" [issues]=\"subtasks|statusFilter:{name:status}\">...</issue-list>\n    </div>\n    ",
+                        template: "\n    <div class=\"title\">{{issue.key}} : {{issue.fields.summary}}</div>\n    <status-columns [issues]=\"subtasks\" [statuses]=\"statuses\">...</status-columns>\n    ",
                         styles: [
                             ':host {position: relative}',
                             '.issue-lists {display: flex; flex-direction: row}',
                             '.title {border-bottom: 1px solid silver;}',
                         ],
-                        directives: [issue_list_component_1.IssueListComponent, issue_component_1.IssueComponent],
+                        directives: [issue_list_component_1.IssueListComponent, issue_component_1.IssueComponent, issue_list_component_1.StatusColumnsComponent],
                         pipes: [issue_pipe_1.StatusFilterPipe],
                     }), 
                     __metadata('design:paramtypes', [])
