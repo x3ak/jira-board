@@ -61,8 +61,6 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                         providers: [issue_service_1.IssueService],
                         directives: [version_component_1.VersionComponent],
                         pipes: [issue_pipe_1.EntersInVersionPipe],
-                        // directives: [IssueListComponent, SwimLaneComponent, StatusColumnsComponent],
-                        // pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
                         styles: [
                             '.board {display: flex; flex-direction: column;margin-top: 2em}',
                             'swim-lane {width: 100%; margin-bottom: 10px}',

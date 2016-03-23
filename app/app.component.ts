@@ -1,12 +1,9 @@
 import {Component, Input} from 'angular2/core';
 import {IssueService} from "./issue.service";
 import {Issue, FixVersion} from "./issue";
-import {IssueListComponent, StatusColumnsComponent} from "./issue-list.component";
 import {
-    StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe,
     EntersInVersionPipe
 } from "./issue.pipe";
-import {SwimLaneComponent} from "./swim-lane.component";
 import {VersionComponent} from "./version.component";
 
 @Component({
@@ -24,8 +21,6 @@ import {VersionComponent} from "./version.component";
     providers: [IssueService],
     directives: [VersionComponent],
     pipes: [EntersInVersionPipe],
-    // directives: [IssueListComponent, SwimLaneComponent, StatusColumnsComponent],
-    // pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
     styles: [
         '.board {display: flex; flex-direction: column;margin-top: 2em}',
         'swim-lane {width: 100%; margin-bottom: 10px}',
