@@ -4,7 +4,7 @@ import {IssueAssigneeComponent} from "./issue-assignee.component";
 @Component({
     selector: 'jb-issue',
     template: `
-        <div class="key">{{issue.key}}</div>
+        <div class="key"><a href="//jira.cloud.rdlp/browse/{{issue.key}}" target="_jira">{{issue.key}}</a></div>
         <div class="summary">{{issue.fields.summary}}</div>
         <issue-assignee *ngIf="issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee" [assignee]="issue.fields.assignee">.</issue-assignee>
     `,
@@ -15,6 +15,8 @@ import {IssueAssigneeComponent} from "./issue-assignee.component";
         'issue-assignee {filter: grayscale(1);-webkit-filter: grayscale(1);}',
         ':host:hover issue-assignee {filter: grayscale(0);-webkit-filter: grayscale(0);}',
         'issue-assignee {transition: all .2s linear}',
+        '.progress {position: relative}',
+        '.progress-line {position: absolute; top: 0; left: 0}'
     ]
 })
 export class IssueComponent {

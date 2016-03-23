@@ -31,7 +31,7 @@ System.register(["angular2/core", "./issue-assignee.component"], function(export
                 IssueComponent = __decorate([
                     core_1.Component({
                         selector: 'jb-issue',
-                        template: "\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
+                        template: "\n        <div class=\"key\"><a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
                         directives: [issue_assignee_component_1.IssueAssigneeComponent],
                         styles: [
                             ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px;background-color: #E5EEFF}',
@@ -39,6 +39,8 @@ System.register(["angular2/core", "./issue-assignee.component"], function(export
                             'issue-assignee {filter: grayscale(1);-webkit-filter: grayscale(1);}',
                             ':host:hover issue-assignee {filter: grayscale(0);-webkit-filter: grayscale(0);}',
                             'issue-assignee {transition: all .2s linear}',
+                            '.progress {position: relative}',
+                            '.progress-line {position: absolute; top: 0; left: 0}'
                         ]
                     }), 
                     __metadata('design:paramtypes', [])

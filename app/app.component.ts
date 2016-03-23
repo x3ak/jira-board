@@ -23,7 +23,6 @@ import {VersionComponent} from "./version.component";
     pipes: [EntersInVersionPipe],
     styles: [
         '.board {display: flex; flex-direction: column;margin-top: 2em}',
-        'swim-lane {width: 100%; margin-bottom: 10px}',
         '.column-names {width: 100%; display: flex; flex-direction: row;}',
         '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
         '.column-name {width: 100%;}',

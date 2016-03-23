@@ -11,7 +11,8 @@ import {Issue} from "./issue";
         <status-columns [issues]="issues|firstLevelIssue" [statuses]="statuses">...</status-columns>
     `,
     directives: [SwimLaneComponent, StatusColumnsComponent],
-    pipes: [SwimLanePipe, FirstLevelIssuePipe, SubTaskOfPipe]
+    pipes: [SwimLanePipe, FirstLevelIssuePipe, SubTaskOfPipe],
+
 })
 export class VersionComponent {
     @Input() version:string;
