@@ -7,7 +7,10 @@ import {IssueComponent} from "./issue.component";
         <jb-issue [issue]="issue" *ngFor="#issue of issues">issue content</jb-issue>
     `,
     directives: [IssueComponent],
-    styles: [':host {display: flex; flex-direction: column;width: 100%}'],
+    styles: [
+        ':host {display: flex; flex-direction: column;width: 100%;}',
+        'jb-issue {}',
+    ],
 })
 export class IssueListComponent {
     @Input() issues:Issue[];

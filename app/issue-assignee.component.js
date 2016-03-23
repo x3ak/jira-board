@@ -28,8 +28,10 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 IssueAssigneeComponent = __decorate([
                     core_1.Component({
                         selector: 'issue-assignee',
-                        template: "\n        <img [src]=\"assignee?.avatarUrls['48x48']\" [title]=\"assignee.displayName\" />\n    ",
-                        styles: ['img {border-radius: 50%}']
+                        template: "\n        <img [src]=\"assignee?.avatarUrls['24x24']\" [title]=\"assignee.displayName\" />\n    ",
+                        styles: [
+                            'img {border-radius: 4px;}',
+                        ]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueAssigneeComponent);

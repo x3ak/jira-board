@@ -31,9 +31,15 @@ System.register(["angular2/core", "./issue-assignee.component"], function(export
                 IssueComponent = __decorate([
                     core_1.Component({
                         selector: 'jb-issue',
-                        template: "\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
+                        template: "\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
                         directives: [issue_assignee_component_1.IssueAssigneeComponent],
-                        styles: [':host {border: 1px solid silver; padding: 5px}']
+                        styles: [
+                            ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px}',
+                            'issue-assignee {position: absolute; top: 2px; right: 2px}',
+                            'issue-assignee {filter: grayscale(1);-webkit-filter: grayscale(1);}',
+                            ':host:hover issue-assignee {filter: grayscale(0);-webkit-filter: grayscale(0);}',
+                            'issue-assignee {transition: all .2s linear}',
+                        ]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueComponent);

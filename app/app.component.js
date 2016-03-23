@@ -55,14 +55,16 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n<label>\n    <input type=\"checkbox\" [(ngModel)]=\"showSubTasks\"> include sub tasks\n</label>\n\n<div class=\"board\">\n    <swim-lane *ngFor=\"#issue of issues|swimLane\" [subtasks]=\"issues|subTaskOf:issue\" [statuses]=\"statuses\" [issue]=\"issue\">...</swim-lane>\n    <div class=\"issue-lists\">\n        <issue-list *ngFor=\"#status of statuses\" [issues]=\"issues|firstLevelIssue|statusFilter:{name:status}\">...</issue-list>\n    </div>\n</div>\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
+                        template: "\n<div class=\"board\">\n    <div class=\"column-names\">\n        <div *ngFor=\"#status of statuses\" class=\"column-name\">{{status}}</div>\n    </div>\n    <swim-lane *ngFor=\"#issue of issues|swimLane\" [subtasks]=\"issues|subTaskOf:issue\" [statuses]=\"statuses\" [issue]=\"issue\">...</swim-lane>\n    <div class=\"issue-lists\">\n        <issue-list *ngFor=\"#status of statuses\" [issues]=\"issues|firstLevelIssue|statusFilter:{name:status}\">...</issue-list>\n    </div>\n</div>\n\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
                         providers: [issue_service_1.IssueService],
                         directives: [issue_list_component_1.IssueListComponent, swim_lane_component_1.SwimLaneComponent],
                         pipes: [issue_pipe_1.StatusFilterPipe, issue_pipe_1.NotSubTaskPipe, issue_pipe_1.SwimLanePipe, issue_pipe_1.SubTaskOfPipe, issue_pipe_1.FirstLevelIssuePipe],
                         styles: [
-                            '.board {display: flex; flex-direction: column;}',
-                            'swim-lane {width: 100%; margin-bottom: 10px}',
-                            '.issue-lists {width: 100%; display: flex; flex-direction: row; border-top: 1px solid red}'
+                            '.board {display: flex; flex-direction: column;margin-top: 1em}',
+                            'swim-lane {width: 100%;}',
+                            '.issue-lists, .column-names {width: 100%; display: flex; flex-direction: row;}',
+                            '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
+                            '.column-name {width: 100%;}',
                         ]
                     }), 
                     __metadata('design:paramtypes', [issue_service_1.IssueService])

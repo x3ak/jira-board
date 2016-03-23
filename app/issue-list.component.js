@@ -33,7 +33,10 @@ System.register(["angular2/core", "./issue.component"], function(exports_1, cont
                         selector: 'issue-list',
                         template: "\n        <jb-issue [issue]=\"issue\" *ngFor=\"#issue of issues\">issue content</jb-issue>\n    ",
                         directives: [issue_component_1.IssueComponent],
-                        styles: [':host {display: flex; flex-direction: column;width: 100%}'],
+                        styles: [
+                            ':host {display: flex; flex-direction: column;width: 100%;}',
+                            'jb-issue {}',
+                        ],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueListComponent);

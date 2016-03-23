@@ -8,25 +8,27 @@ import {SwimLaneComponent} from "./swim-lane.component";
 @Component({
     selector: 'my-app',
     template: `
-<label>
-    <input type="checkbox" [(ngModel)]="showSubTasks"> include sub tasks
-</label>
-
 <div class="board">
+    <div class="column-names">
+        <div *ngFor="#status of statuses" class="column-name">{{status}}</div>
+    </div>
     <swim-lane *ngFor="#issue of issues|swimLane" [subtasks]="issues|subTaskOf:issue" [statuses]="statuses" [issue]="issue">...</swim-lane>
     <div class="issue-lists">
         <issue-list *ngFor="#status of statuses" [issues]="issues|firstLevelIssue|statusFilter:{name:status}">...</issue-list>
     </div>
 </div>
+
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
     `,
     providers: [IssueService],
     directives: [IssueListComponent,SwimLaneComponent],
     pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
     styles: [
-        '.board {display: flex; flex-direction: column;}',
-        'swim-lane {width: 100%; margin-bottom: 10px}',
-        '.issue-lists {width: 100%; display: flex; flex-direction: row; border-top: 1px solid red}'
+        '.board {display: flex; flex-direction: column;margin-top: 1em}',
+        'swim-lane {width: 100%;}',
+        '.issue-lists, .column-names {width: 100%; display: flex; flex-direction: row;}',
+        '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
+        '.column-name {width: 100%;}',
     ]
 
 })

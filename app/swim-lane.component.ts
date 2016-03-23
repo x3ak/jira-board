@@ -6,12 +6,16 @@ import {StatusFilterPipe} from "./issue.pipe";
 @Component({
     selector: 'swim-lane',
     template: `
-    <div class="title">{{issue.key}}</div>
+    <div class="title">{{issue.key}} : {{issue.fields.summary}}</div>
     <div class="issue-lists">
         <issue-list *ngFor="#status of statuses" [issues]="subtasks|statusFilter:{name:status}">...</issue-list>
     </div>
     `,
-    styles: ['.issue-lists {display: flex; flex-direction: row}'],
+    styles: [
+        ':host {position: relative}',
+        '.issue-lists {display: flex; flex-direction: row}',
+        '.title {border-bottom: 1px solid silver;}',
+    ],
     directives: [IssueListComponent, IssueComponent],
     pipes: [StatusFilterPipe],
 })
