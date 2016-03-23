@@ -45,9 +45,13 @@ System.register(["angular2/core", "./swim-lane.component", "./issue-list.compone
                 VersionComponent = __decorate([
                     core_1.Component({
                         selector: 'version',
-                        template: "\n        <h2>{{version}}</h2>\n        <swim-lane *ngFor=\"#issue of issues|swimLane\" [subtasks]=\"issues|subTaskOf:issue\" [statuses]=\"statuses\" [issue]=\"issue\">...</swim-lane>\n        <status-columns [issues]=\"issues|firstLevelIssue\" [statuses]=\"statuses\">...</status-columns>\n    ",
+                        template: "\n        <h2>{{version}}</h2>\n        <swim-lane *ngFor=\"#issue of issues|swimLane\" [subtasks]=\"issues|subTaskOf:issue\" [statuses]=\"statuses\" [issue]=\"issue\">...</swim-lane>\n        <div class=\"title\">No parent issue</div>\n        <status-columns [issues]=\"issues|firstLevelIssue\" [statuses]=\"statuses\">...</status-columns>\n    ",
                         directives: [swim_lane_component_1.SwimLaneComponent, issue_list_component_1.StatusColumnsComponent],
                         pipes: [issue_pipe_1.SwimLanePipe, issue_pipe_1.FirstLevelIssuePipe, issue_pipe_1.SubTaskOfPipe],
+                        styles: [
+                            'swim-lane {margin-bottom: 25px;display: block}',
+                            '.title {border-bottom: 1px solid silver;}',
+                        ],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], VersionComponent);

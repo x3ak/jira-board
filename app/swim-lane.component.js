@@ -51,7 +51,7 @@ System.register(["angular2/core", "./issue-list.component", "./issue.component",
                         selector: 'swim-lane',
                         template: "\n    <div class=\"title\">{{issue.key}} : {{issue.fields.summary}}</div>\n    <status-columns [issues]=\"subtasks\" [statuses]=\"statuses\">...</status-columns>\n    ",
                         styles: [
-                            ':host {position: relative}',
+                            ':host {position: relative;}',
                             '.issue-lists {display: flex; flex-direction: row}',
                             '.title {border-bottom: 1px solid silver;}',
                         ],

@@ -10,7 +10,7 @@ import {StatusFilterPipe} from "./issue.pipe";
     <status-columns [issues]="subtasks" [statuses]="statuses">...</status-columns>
     `,
     styles: [
-        ':host {position: relative}',
+        ':host {position: relative;}',
         '.issue-lists {display: flex; flex-direction: row}',
         '.title {border-bottom: 1px solid silver;}',
     ],
