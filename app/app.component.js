@@ -61,7 +61,7 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
                         pipes: [issue_pipe_1.StatusFilterPipe, issue_pipe_1.NotSubTaskPipe, issue_pipe_1.SwimLanePipe, issue_pipe_1.SubTaskOfPipe, issue_pipe_1.FirstLevelIssuePipe],
                         styles: [
                             '.board {display: flex; flex-direction: column;margin-top: 2em}',
-                            'swim-lane {width: 100%;}',
+                            'swim-lane {width: 100%; margin-bottom: 10px}',
                             '.column-names {width: 100%; display: flex; flex-direction: row;}',
                             '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
                             '.column-name {width: 100%;}',
