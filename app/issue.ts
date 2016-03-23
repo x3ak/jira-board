@@ -13,6 +13,11 @@ export interface FixVersion {
     name: string;
 }
 
+export interface IssueType {
+    name: string;
+    iconUrl: string;
+}
+
 export interface Status {
     name:string;
     iconUrl:string;
@@ -26,7 +31,7 @@ export interface Assignee {
 
 export interface IssueFields {
     status: Status;
-    issuetype: any;
+    issuetype: IssueType;
     assignee: Assignee;
     summary: string;
     parent: Issue;
