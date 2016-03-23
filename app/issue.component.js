@@ -31,9 +31,9 @@ System.register(["angular2/core", "./issue-assignee.component"], function(export
                 IssueComponent = __decorate([
                     core_1.Component({
                         selector: 'jb-issue',
-                        template: "\n    <div class=\"jb-issue\">\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    </div>\n    ",
+                        template: "\n        <div class=\"key\">{{issue.key}}</div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
                         directives: [issue_assignee_component_1.IssueAssigneeComponent],
-                        styles: ['.jb-issue {border: 1px solid silver; padding: 5px}']
+                        styles: [':host {border: 1px solid silver; padding: 5px}']
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueComponent);

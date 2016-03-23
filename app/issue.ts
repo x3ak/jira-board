@@ -26,4 +26,5 @@ export interface IssueFields {
     assignee: Assignee;
     summary: string;
     parent: Issue;
+    subtasks: any[];
 }

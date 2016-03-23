@@ -28,16 +28,12 @@ System.register(["angular2/core", "./issue.component"], function(exports_1, cont
                     core_1.Input(), 
                     __metadata('design:type', Array)
                 ], IssueListComponent.prototype, "issues", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], IssueListComponent.prototype, "title", void 0);
                 IssueListComponent = __decorate([
                     core_1.Component({
                         selector: 'issue-list',
-                        template: "\n        <div class=\"issue-list\">\n            <h2>{{title}}</h2>\n            <jb-issue [issue]=\"issue\" *ngFor=\"#issue of issues\">issue content</jb-issue>\n        </div>\n    ",
+                        template: "\n        <jb-issue [issue]=\"issue\" *ngFor=\"#issue of issues\">issue content</jb-issue>\n    ",
                         directives: [issue_component_1.IssueComponent],
-                        styles: ['.issue-list {display: flex; flex-direction: column; margin-right: 10px} jb-issue {margin-bottom: 10px}'],
+                        styles: [':host {display: flex; flex-direction: column;width: 100%}'],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], IssueListComponent);

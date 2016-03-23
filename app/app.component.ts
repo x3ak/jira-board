@@ -2,7 +2,8 @@ import {Component, Input} from 'angular2/core';
 import {IssueService} from "./issue.service";
 import {Issue} from "./issue";
 import {IssueListComponent} from "./issue-list.component";
-import {StatusFilterPipe, NotSubTaskPipe} from "./issue.pipe";
+import {StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe} from "./issue.pipe";
+import {SwimLaneComponent} from "./swim-lane.component";
 
 @Component({
     selector: 'my-app',
@@ -12,16 +13,21 @@ import {StatusFilterPipe, NotSubTaskPipe} from "./issue.pipe";
 </label>
 
 <div class="board">
-    <issue-list *ngFor="#status of statuses" [issues]="issues|includeSubTask:showSubTasks|statusFilter:{name:status}" [title]="status">
-        loading...
-    </issue-list>
+    <swim-lane *ngFor="#issue of issues|swimLane" [subtasks]="issues|subTaskOf:issue" [statuses]="statuses" [issue]="issue">...</swim-lane>
+    <div class="issue-lists">
+        <issue-list *ngFor="#status of statuses" [issues]="issues|firstLevelIssue|statusFilter:{name:status}">...</issue-list>
+    </div>
 </div>
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
     `,
     providers: [IssueService],
-    directives: [IssueListComponent],
-    pipes: [StatusFilterPipe, NotSubTaskPipe],
-    styles: ['.board {display: flex; align-content:stretch;} issue-list {width: 100%}']
+    directives: [IssueListComponent,SwimLaneComponent],
+    pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
+    styles: [
+        '.board {display: flex; flex-direction: column;}',
+        'swim-lane {width: 100%; margin-bottom: 10px}',
+        '.issue-lists {width: 100%; display: flex; flex-direction: row; border-top: 1px solid red}'
+    ]
 
 })
 export class AppComponent {
