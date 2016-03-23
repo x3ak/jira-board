@@ -13,7 +13,11 @@ import {VersionComponent} from "./version.component";
     <div class="column-names">
         <div *ngFor="#status of statuses" class="column-name">{{status}}</div>
     </div>
-    <version *ngFor="#version of versions" [issues]="issues|entersInVersion:version" [statuses]="statuses" [version]="version">..</version>
+    <div class="scroll-parent">
+        <div class="scrolling">
+            <version *ngFor="#version of versions" [issues]="issues|entersInVersion:version" [statuses]="statuses" [version]="version">..</version>
+        </div>
+    </div>
 </div>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
@@ -22,10 +26,12 @@ import {VersionComponent} from "./version.component";
     directives: [VersionComponent],
     pipes: [EntersInVersionPipe],
     styles: [
-        '.board {display: flex; flex-direction: column;margin-top: 2em}',
+        '.board {display: flex; flex-direction: column;}',
         '.column-names {width: 100%; display: flex; flex-direction: row;}',
-        '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
-        '.column-name {width: 100%;}',
+        '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 1;font-size: 2em;text-align: center}',
+        '.column-name {width: 100%; border-left: 1px solid #ececec}',
+        '.scroll-parent {z-index: 2;padding-top: 2.2em;height: 100%; }',
+        '.scrolling {height: 100%; overflow-y: scroll;z-index: 3;margin-right: -16px}',
     ]
 
 })

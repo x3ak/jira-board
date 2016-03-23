@@ -57,15 +57,17 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n<div class=\"board\">\n    <div class=\"column-names\">\n        <div *ngFor=\"#status of statuses\" class=\"column-name\">{{status}}</div>\n    </div>\n    <version *ngFor=\"#version of versions\" [issues]=\"issues|entersInVersion:version\" [statuses]=\"statuses\" [version]=\"version\">..</version>\n</div>\n\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
+                        template: "\n<div class=\"board\">\n    <div class=\"column-names\">\n        <div *ngFor=\"#status of statuses\" class=\"column-name\">{{status}}</div>\n    </div>\n    <div class=\"scroll-parent\">\n        <div class=\"scrolling\">\n            <version *ngFor=\"#version of versions\" [issues]=\"issues|entersInVersion:version\" [statuses]=\"statuses\" [version]=\"version\">..</version>\n        </div>\n    </div>\n</div>\n\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
                         providers: [issue_service_1.IssueService],
                         directives: [version_component_1.VersionComponent],
                         pipes: [issue_pipe_1.EntersInVersionPipe],
                         styles: [
-                            '.board {display: flex; flex-direction: column;margin-top: 2em}',
+                            '.board {display: flex; flex-direction: column;}',
                             '.column-names {width: 100%; display: flex; flex-direction: row;}',
-                            '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
-                            '.column-name {width: 100%;}',
+                            '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 1;font-size: 2em;text-align: center}',
+                            '.column-name {width: 100%; border-left: 1px solid #ececec}',
+                            '.scroll-parent {z-index: 2;padding-top: 2.2em;height: 100%; }',
+                            '.scrolling {height: 100%; overflow-y: scroll;z-index: 3;margin-right: -16px}',
                         ]
                     }), 
                     __metadata('design:paramtypes', [issue_service_1.IssueService])
