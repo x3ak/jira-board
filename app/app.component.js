@@ -60,7 +60,7 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
                         directives: [issue_list_component_1.IssueListComponent, swim_lane_component_1.SwimLaneComponent],
                         pipes: [issue_pipe_1.StatusFilterPipe, issue_pipe_1.NotSubTaskPipe, issue_pipe_1.SwimLanePipe, issue_pipe_1.SubTaskOfPipe, issue_pipe_1.FirstLevelIssuePipe],
                         styles: [
-                            '.board {display: flex; flex-direction: column;margin-top: 1em}',
+                            '.board {display: flex; flex-direction: column;margin-top: 2em}',
                             'swim-lane {width: 100%;}',
                             '.issue-lists, .column-names {width: 100%; display: flex; flex-direction: row;}',
                             '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;}',
