@@ -1,4 +1,4 @@
-System.register(['angular2/core', "./issue.service", "./issue-list.component", "./issue.pipe", "./swim-lane.component"], function(exports_1, context_1) {
+System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, issue_service_1, issue_list_component_1, issue_pipe_1, swim_lane_component_1;
+    var core_1, issue_service_1, issue_pipe_1, version_component_1;
     var AppComponent;
     return {
         setters:[
@@ -20,21 +20,18 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
             function (issue_service_1_1) {
                 issue_service_1 = issue_service_1_1;
             },
-            function (issue_list_component_1_1) {
-                issue_list_component_1 = issue_list_component_1_1;
-            },
             function (issue_pipe_1_1) {
                 issue_pipe_1 = issue_pipe_1_1;
             },
-            function (swim_lane_component_1_1) {
-                swim_lane_component_1 = swim_lane_component_1_1;
+            function (version_component_1_1) {
+                version_component_1 = version_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
                 function AppComponent(_issueService) {
                     this._issueService = _issueService;
                     this.statuses = [];
-                    this.showSubTasks = false;
+                    this.versions = [];
                 }
                 AppComponent.prototype.ngOnInit = function () {
                     this.getIssues();
@@ -49,16 +46,23 @@ System.register(['angular2/core', "./issue.service", "./issue-list.component", "
                             if (_this.statuses.indexOf(status) == -1) {
                                 _this.statuses.push(status);
                             }
+                            issue.fields.fixVersions.forEach(function (fixVersion) {
+                                if (_this.versions.indexOf(fixVersion.name) == -1) {
+                                    _this.versions.push(fixVersion.name);
+                                }
+                            });
                         });
                     }, function (error) { return _this.errorMessage = error; });
                 };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n<div class=\"board\">\n    <div class=\"column-names\">\n        <div *ngFor=\"#status of statuses\" class=\"column-name\">{{status}}</div>\n    </div>\n    <swim-lane *ngFor=\"#issue of issues|swimLane\" [subtasks]=\"issues|subTaskOf:issue\" [statuses]=\"statuses\" [issue]=\"issue\">...</swim-lane>\n    <status-columns [issues]=\"issues|firstLevelIssue\" [statuses]=\"statuses\">...</status-columns>\n</div>\n\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
+                        template: "\n<div class=\"board\">\n    <div class=\"column-names\">\n        <div *ngFor=\"#status of statuses\" class=\"column-name\">{{status}}</div>\n    </div>\n    <version *ngFor=\"#version of versions\" [issues]=\"issues|entersInVersion:version\" [statuses]=\"statuses\" [version]=\"version\">..</version>\n</div>\n\n<div class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</div>\n    ",
                         providers: [issue_service_1.IssueService],
-                        directives: [issue_list_component_1.IssueListComponent, swim_lane_component_1.SwimLaneComponent, issue_list_component_1.StatusColumnsComponent],
-                        pipes: [issue_pipe_1.StatusFilterPipe, issue_pipe_1.NotSubTaskPipe, issue_pipe_1.SwimLanePipe, issue_pipe_1.SubTaskOfPipe, issue_pipe_1.FirstLevelIssuePipe],
+                        directives: [version_component_1.VersionComponent],
+                        pipes: [issue_pipe_1.EntersInVersionPipe],
+                        // directives: [IssueListComponent, SwimLaneComponent, StatusColumnsComponent],
+                        // pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
                         styles: [
                             '.board {display: flex; flex-direction: column;margin-top: 2em}',
                             'swim-lane {width: 100%; margin-bottom: 10px}',

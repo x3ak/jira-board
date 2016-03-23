@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from "angular2/core";
-import {Issue} from "./issue";
+import {Issue, FixVersion} from "./issue";
 
 @Pipe({
     name: 'includeSubTask'
@@ -73,6 +73,35 @@ export class SubTaskOfPipe implements PipeTransform {
             return value.filter(issue => {
                 if (issue.fields.parent) {
                     return issue.fields.parent.id == parentIssue.id;
+                } else {
+                    return false;
+                }
+            });
+        }
+        return null;
+    }
+}
+
+@Pipe({
+    name: 'entersInVersion',
+})
+export class EntersInVersionPipe implements PipeTransform {
+
+    transform(value:Issue[], args:any[]):any {
+
+        let [filterVersion] = args;
+        if (value && filterVersion) {
+
+            return value.filter(issue => {
+                if (issue.fields.fixVersions.length > 0) {
+                    var found:boolean = false;
+                    issue.fields.fixVersions.forEach(fixVersion => {
+                        if (fixVersion.name == filterVersion) {
+                            found = true;
+                            return true;
+                        }
+                    });
+                    return found;
                 } else {
                     return false;
                 }

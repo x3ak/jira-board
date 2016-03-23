@@ -11,7 +11,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var NotSubTaskPipe, FirstLevelIssuePipe, StatusFilterPipe, SwimLanePipe, SubTaskOfPipe;
+    var NotSubTaskPipe, FirstLevelIssuePipe, StatusFilterPipe, SwimLanePipe, SubTaskOfPipe, EntersInVersionPipe;
     return {
         setters:[
             function (core_1_1) {
@@ -121,6 +121,39 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 return SubTaskOfPipe;
             }());
             exports_1("SubTaskOfPipe", SubTaskOfPipe);
+            EntersInVersionPipe = (function () {
+                function EntersInVersionPipe() {
+                }
+                EntersInVersionPipe.prototype.transform = function (value, args) {
+                    var filterVersion = args[0];
+                    if (value && filterVersion) {
+                        return value.filter(function (issue) {
+                            if (issue.fields.fixVersions.length > 0) {
+                                var found = false;
+                                issue.fields.fixVersions.forEach(function (fixVersion) {
+                                    if (fixVersion.name == filterVersion) {
+                                        found = true;
+                                        return true;
+                                    }
+                                });
+                                return found;
+                            }
+                            else {
+                                return false;
+                            }
+                        });
+                    }
+                    return null;
+                };
+                EntersInVersionPipe = __decorate([
+                    core_1.Pipe({
+                        name: 'entersInVersion',
+                    }), 
+                    __metadata('design:paramtypes', [])
+                ], EntersInVersionPipe);
+                return EntersInVersionPipe;
+            }());
+            exports_1("EntersInVersionPipe", EntersInVersionPipe);
         }
     }
 });

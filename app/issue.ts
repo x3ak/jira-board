@@ -9,6 +9,10 @@ export interface StatusCategory {
     name:string;
 }
 
+export interface FixVersion {
+    name: string;
+}
+
 export interface Status {
     name:string;
     iconUrl:string;
@@ -27,4 +31,5 @@ export interface IssueFields {
     summary: string;
     parent: Issue;
     subtasks: any[];
+    fixVersions: FixVersion[];
 }

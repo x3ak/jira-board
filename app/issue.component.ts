@@ -1,5 +1,5 @@
 import {Component, Input} from "angular2/core";
-import {Issue} from "./issue";
+import {Issue, FixVersion} from "./issue";
 import {IssueAssigneeComponent} from "./issue-assignee.component";
 @Component({
     selector: 'jb-issue',

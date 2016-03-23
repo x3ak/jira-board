@@ -1,9 +1,13 @@
 import {Component, Input} from 'angular2/core';
 import {IssueService} from "./issue.service";
-import {Issue} from "./issue";
+import {Issue, FixVersion} from "./issue";
 import {IssueListComponent, StatusColumnsComponent} from "./issue-list.component";
-import {StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe} from "./issue.pipe";
+import {
+    StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe,
+    EntersInVersionPipe
+} from "./issue.pipe";
 import {SwimLaneComponent} from "./swim-lane.component";
+import {VersionComponent} from "./version.component";
 
 @Component({
     selector: 'my-app',
@@ -12,15 +16,16 @@ import {SwimLaneComponent} from "./swim-lane.component";
     <div class="column-names">
         <div *ngFor="#status of statuses" class="column-name">{{status}}</div>
     </div>
-    <swim-lane *ngFor="#issue of issues|swimLane" [subtasks]="issues|subTaskOf:issue" [statuses]="statuses" [issue]="issue">...</swim-lane>
-    <status-columns [issues]="issues|firstLevelIssue" [statuses]="statuses">...</status-columns>
+    <version *ngFor="#version of versions" [issues]="issues|entersInVersion:version" [statuses]="statuses" [version]="version">..</version>
 </div>
 
 <div class="error" *ngIf="errorMessage">{{errorMessage}}</div>
     `,
     providers: [IssueService],
-    directives: [IssueListComponent, SwimLaneComponent, StatusColumnsComponent],
-    pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
+    directives: [VersionComponent],
+    pipes: [EntersInVersionPipe],
+    // directives: [IssueListComponent, SwimLaneComponent, StatusColumnsComponent],
+    // pipes: [StatusFilterPipe, NotSubTaskPipe, SwimLanePipe, SubTaskOfPipe, FirstLevelIssuePipe],
     styles: [
         '.board {display: flex; flex-direction: column;margin-top: 2em}',
         'swim-lane {width: 100%; margin-bottom: 10px}',
@@ -34,7 +39,7 @@ export class AppComponent {
     errorMessage: string;
     issues: Issue[];
     statuses:string[] = [];
-    showSubTasks:boolean = false;
+    versions:string[] = [];
     constructor (private _issueService: IssueService) {}
     ngOnInit() {
         this.getIssues();
@@ -49,6 +54,13 @@ export class AppComponent {
                     if (this.statuses.indexOf(status) == -1) {
                         this.statuses.push(status);
                     }
+
+                    issue.fields.fixVersions.forEach(fixVersion => {
+                        if (this.versions.indexOf(fixVersion.name) == -1) {
+                            this.versions.push(fixVersion.name);
+                        }
+                    });
+
                 });
             },
             error =>  this.errorMessage = <any>error);
