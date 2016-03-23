@@ -36,6 +36,10 @@ export class AppComponent {
     versions:string[] = [];
     constructor (private _issueService: IssueService) {}
     ngOnInit() {
+        setInterval(() => {
+            this.getIssues();
+        }, 60 * 1000);
+
         this.getIssues();
     }
     getIssues() {

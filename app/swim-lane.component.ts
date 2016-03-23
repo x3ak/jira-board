@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from "angular2/core";
+import {Component, Input} from "angular2/core";
 import {Issue} from "./issue";
 import {IssueListComponent, StatusColumnsComponent} from "./issue-list.component";
 import {IssueComponent} from "./issue.component";
@@ -17,13 +17,8 @@ import {StatusFilterPipe} from "./issue.pipe";
     directives: [IssueListComponent, IssueComponent, StatusColumnsComponent],
     pipes: [StatusFilterPipe],
 })
-export class SwimLaneComponent implements OnInit {
+export class SwimLaneComponent {
     @Input() issue:Issue;
     @Input() subtasks:Issue[];
     @Input() statuses:string[];
-
-    ngOnInit():any {
-        console.log(this.subtasks);
-        return null;
-    }
 }

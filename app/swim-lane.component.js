@@ -30,10 +30,6 @@ System.register(["angular2/core", "./issue-list.component", "./issue.component",
             SwimLaneComponent = (function () {
                 function SwimLaneComponent() {
                 }
-                SwimLaneComponent.prototype.ngOnInit = function () {
-                    console.log(this.subtasks);
-                    return null;
-                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)

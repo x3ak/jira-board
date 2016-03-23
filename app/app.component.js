@@ -34,6 +34,10 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                     this.versions = [];
                 }
                 AppComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    setInterval(function () {
+                        _this.getIssues();
+                    }, 60 * 1000);
                     this.getIssues();
                 };
                 AppComponent.prototype.getIssues = function () {
