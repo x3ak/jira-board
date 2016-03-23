@@ -32,7 +32,7 @@ import {VersionComponent} from "./version.component";
 export class AppComponent {
     errorMessage: string;
     issues: Issue[];
-    statuses:string[] = [];
+    statuses:string[] = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved'];
     versions:string[] = [];
     constructor (private _issueService: IssueService) {}
     ngOnInit() {
@@ -44,11 +44,6 @@ export class AppComponent {
                 this.issues = issues;
 
                 this.issues.forEach(issue => {
-                    var status:string = issue.fields.status.name;
-                    if (this.statuses.indexOf(status) == -1) {
-                        this.statuses.push(status);
-                    }
-
                     issue.fields.fixVersions.forEach(fixVersion => {
                         if (this.versions.indexOf(fixVersion.name) == -1) {
                             this.versions.push(fixVersion.name);

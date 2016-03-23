@@ -30,7 +30,7 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
             AppComponent = (function () {
                 function AppComponent(_issueService) {
                     this._issueService = _issueService;
-                    this.statuses = [];
+                    this.statuses = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved'];
                     this.versions = [];
                 }
                 AppComponent.prototype.ngOnInit = function () {
@@ -42,10 +42,6 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                         .subscribe(function (issues) {
                         _this.issues = issues;
                         _this.issues.forEach(function (issue) {
-                            var status = issue.fields.status.name;
-                            if (_this.statuses.indexOf(status) == -1) {
-                                _this.statuses.push(status);
-                            }
                             issue.fields.fixVersions.forEach(function (fixVersion) {
                                 if (_this.versions.indexOf(fixVersion.name) == -1) {
                                     _this.versions.push(fixVersion.name);
