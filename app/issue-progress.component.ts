@@ -8,7 +8,7 @@ import {Input, OnInit, Component} from "angular2/core";
         <div class="overflow-bar" *ngIf="overflow > 0" [style.width]="overflow + '%'"></div>
     `,
     styles: [
-        ':host {display: block; height: 10px; position: relative; background-color: #89afd7;}',
+        ':host {display: block; height: 5px; position: relative; background-color: #89afd7;}',
         // '.total {position: absolute; top: 0; left: 0;}',
         '.progress-bar {position: absolute; top: 0; bottom: 0; left: 0;; background-color: green;}',
         '.overflow-bar {position: absolute; top: 0; bottom: 0; left: 0;; background-color: red;}',
