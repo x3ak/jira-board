@@ -67,7 +67,7 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                             '.column-names {position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 1;font-size: 2em;text-align: center}',
                             '.column-name {width: 100%; border-left: 1px solid #ececec}',
                             '.scroll-parent {z-index: 2;padding-top: 2.2em;height: 100%; }',
-                            '.scrolling {height: 100%; overflow-y: scroll;z-index: 3;margin-right: -16px}',
+                            '.scrolling {height: 100%; overflow-y: scroll;z-index: 3;margin-right: -16px;border-top: 2px solid silver;}',
                         ]
                     }), 
                     __metadata('design:paramtypes', [issue_service_1.IssueService])
