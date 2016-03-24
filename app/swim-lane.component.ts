@@ -10,9 +10,9 @@ import {StatusFilterPipe} from "./issue.pipe";
     <status-columns [issues]="subtasks" [statuses]="statuses">...</status-columns>
     `,
     styles: [
-        ':host {position: relative;}',
+        ':host {position: relative; background-color: rgba(0,0,255,0.2); border: 1px solid rgba(0,0,255,0.2);}',
         '.issue-lists {display: flex; flex-direction: row}',
-        '.title {border-bottom: 1px solid silver;}',
+        '.title {border-bottom: 1px solid rgba(0,0,255,0.2); padding: 5px;    font-weight: bold; }',
     ],
     directives: [IssueListComponent, IssueComponent, StatusColumnsComponent],
     pipes: [StatusFilterPipe],
