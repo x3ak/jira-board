@@ -1,7 +1,8 @@
-import {Component, Input} from "angular2/core";
-import {Issue, FixVersion} from "./issue";
+import {Component, Input, OnInit} from "angular2/core";
+import {Issue, FixVersion, Progress} from "./issue";
 import {IssueAssigneeComponent} from "./issue-assignee.component";
 import {NgClass} from "angular2/common";
+import {IssueProgressComponent} from "./issue-progress.component";
 @Component({
     selector: 'jb-issue',
     host: {
@@ -11,8 +12,9 @@ import {NgClass} from "angular2/common";
         <div class="key"><img [src]="issue.fields.issuetype.iconUrl" /> <a href="//jira.cloud.rdlp/browse/{{issue.key}}" target="_jira">{{issue.key}}</a></div>
         <div class="summary">{{issue.fields.summary}}</div>
         <issue-assignee *ngIf="issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee" [assignee]="issue.fields.assignee">.</issue-assignee>
+        <issue-progress [issue]="issue">progress</issue-progress>
     `,
-    directives: [IssueAssigneeComponent, NgClass],
+    directives: [IssueAssigneeComponent, IssueProgressComponent],
     styles: [
         ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px;background-color: #E5EEFF}',
         'issue-assignee {position: absolute; top: 2px; right: 2px}',
@@ -23,7 +25,13 @@ import {NgClass} from "angular2/common";
         ':host(.Bug) {background-color:#FFCEC9}',
     ]
 })
-export class IssueComponent {
+export class IssueComponent implements OnInit {
     @Input() issue:Issue;
 
+
+    ngOnInit():any {
+        // console.log(this.issue);
+        return null;
+    }
 }
+

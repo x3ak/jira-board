@@ -29,6 +29,12 @@ export interface Assignee {
     displayName:string;
 }
 
+export interface Progress {
+    percent: number;
+    progress: number;
+    total: number;
+}
+
 export interface IssueFields {
     status: Status;
     issuetype: IssueType;
@@ -37,4 +43,7 @@ export interface IssueFields {
     parent: Issue;
     subtasks: any[];
     fixVersions: FixVersion[];
+    progress: Progress;
+    aggregatetimeoriginalestimate: number;
+    aggregatetimespent: number;
 }

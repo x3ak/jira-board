@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./issue-assignee.component", "angular2/common"], function(exports_1, context_1) {
+System.register(["angular2/core", "./issue-assignee.component", "./issue-progress.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "./issue-assignee.component", "angular2/common
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, issue_assignee_component_1, common_1;
+    var core_1, issue_assignee_component_1, issue_progress_component_1;
     var IssueComponent;
     return {
         setters:[
@@ -20,13 +20,17 @@ System.register(["angular2/core", "./issue-assignee.component", "angular2/common
             function (issue_assignee_component_1_1) {
                 issue_assignee_component_1 = issue_assignee_component_1_1;
             },
-            function (common_1_1) {
-                common_1 = common_1_1;
+            function (issue_progress_component_1_1) {
+                issue_progress_component_1 = issue_progress_component_1_1;
             }],
         execute: function() {
             IssueComponent = (function () {
                 function IssueComponent() {
                 }
+                IssueComponent.prototype.ngOnInit = function () {
+                    // console.log(this.issue);
+                    return null;
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)
@@ -37,8 +41,8 @@ System.register(["angular2/core", "./issue-assignee.component", "angular2/common
                         host: {
                             '[class]': "issue.fields.issuetype.name",
                         },
-                        template: "\n        <div class=\"key\"><img [src]=\"issue.fields.issuetype.iconUrl\" /> <a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n    ",
-                        directives: [issue_assignee_component_1.IssueAssigneeComponent, common_1.NgClass],
+                        template: "\n        <div class=\"key\"><img [src]=\"issue.fields.issuetype.iconUrl\" /> <a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n        <issue-progress [issue]=\"issue\">progress</issue-progress>\n    ",
+                        directives: [issue_assignee_component_1.IssueAssigneeComponent, issue_progress_component_1.IssueProgressComponent],
                         styles: [
                             ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px;background-color: #E5EEFF}',
                             'issue-assignee {position: absolute; top: 2px; right: 2px}',
