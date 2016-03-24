@@ -24,7 +24,7 @@ export class FirstLevelIssuePipe implements PipeTransform {
     transform(value:any[], args:any[]):any {
 
         if (value) {
-            return value.filter(issue => {return issue.fields.subtasks.length == 0});
+            return value.filter(issue => {return !issue.fields.issuetype.subtask && issue.fields.subtasks.length == 0});
         }
         return null;
     }
