@@ -51,6 +51,7 @@ System.register(["angular2/core", "./issue-assignee.component", "./issue-progres
                             'issue-assignee {transition: all .2s linear}',
                             '.key {border-bottom: 1px solid silver; padding-bottom: 5px;margin-bottom: 5px}',
                             ':host(.Bug) {background-color:#FFCEC9}',
+                            'issue-progress {margin-top: 5px}',
                         ]
                     }), 
                     __metadata('design:paramtypes', [])
