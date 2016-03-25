@@ -28,15 +28,34 @@ System.register(["angular2/http", "angular2/core", 'rxjs/Rx', "rxjs/Observable"]
             IssueService = (function () {
                 function IssueService(http) {
                     this.http = http;
+                    this._jiraUrl = 'http://jira-report.cloud.rdlp/api-proxy.php';
+                    this._filterID = 11401;
+                    this._fields = [
+                        'status',
+                        'issuetype',
+                        'assignee',
+                        'summary',
+                        'parent',
+                        'subtasks',
+                        'fixVersions',
+                        'progress',
+                        'aggregatetimeoriginalestimate',
+                        'aggregatetimespent',
+                    ];
                     // private _fields = 'status,issuetype,assignee,summary,parent,subtasks,fixVersions';
-                    this._fields = '*all';
+                    // private _fields:string[] = ['*all'];
                     // private _url = 'http://jira-report.cloud.rdlp/api-proxy.php/search?fields=status,issuetype,assignee,summary,parent,subtasks,fixVersions&jql=project%20=%20RDLP%20AND%20fixVersion%20=%207.0.0.0%20AND%20labels%20=%20ITERATION-1%20ORDER%20BY%20status%20ASC,%20priority%20DESC,%20key%20DESC';
-                    this._url = 'http://jira-report.cloud.rdlp/api-proxy.php/search?maxResults=200&fields=' + this._fields + '&jql=project = RDLP AND fixVersion in (7.0.0.0, 6.14.0.0) and status != Closed ORDER BY fixVersion ASC, priority DESC, status ASC,  key DESC';
+                    this._searchUrl = '/search?maxResults=200&fields=' + this._fields.join(',');
                 }
                 // private _url = 'search.json';
-                IssueService.prototype.getIssues = function () {
-                    return this.http.get(this._url)
+                IssueService.prototype.getIssues = function (jql) {
+                    return this.http.get(this._jiraUrl + this._searchUrl + '&jql=' + jql)
                         .map(function (res) { return res.json().issues; })
+                        .catch(this.handleError);
+                };
+                IssueService.prototype.getJQLFromFilter = function () {
+                    return this.http.get(this._jiraUrl + '/filter/' + this._filterID)
+                        .map(function (res) { return res.json().jql; })
                         .catch(this.handleError);
                 };
                 IssueService.prototype.handleError = function (error) {

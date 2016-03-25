@@ -35,7 +35,7 @@ export interface Progress {
     total: number;
 }
 
-export interface IssueFields {
+export class IssueFields {
     status: Status;
     issuetype: IssueType;
     assignee: Assignee;
