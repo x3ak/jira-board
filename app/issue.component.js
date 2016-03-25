@@ -41,7 +41,7 @@ System.register(["angular2/core", "./issue-assignee.component", "./issue-progres
                         host: {
                             '[class]': "issue.fields.issuetype.name",
                         },
-                        template: "\n        <div class=\"key\"><img [src]=\"issue.fields.issuetype.iconUrl\" /> <a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n        <issue-progress [issue]=\"issue\">progress</issue-progress>\n    ",
+                        template: "\n        <div class=\"key\"><img [src]=\"issue.fields.issuetype.iconUrl\" /> <a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n        <issue-progress [issue]=\"issue\">progress</issue-progress>\n    ",
                         directives: [issue_assignee_component_1.IssueAssigneeComponent, issue_progress_component_1.IssueProgressComponent],
                         styles: [
                             ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px;background-color: #E5EEFF}',

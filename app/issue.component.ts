@@ -11,7 +11,7 @@ import {IssueProgressComponent} from "./issue-progress.component";
     template: `
         <div class="key"><img [src]="issue.fields.issuetype.iconUrl" /> <a href="//jira.cloud.rdlp/browse/{{issue.key}}" target="_jira">{{issue.key}}</a></div>
         <div class="summary">{{issue.fields.summary}}</div>
-        <issue-assignee *ngIf="issue.fields.status.statusCategory.name != 'Complete' && issue.fields.assignee" [assignee]="issue.fields.assignee">.</issue-assignee>
+        <issue-assignee *ngIf="issue.fields.assignee" [assignee]="issue.fields.assignee">.</issue-assignee>
         <issue-progress [issue]="issue">progress</issue-progress>
     `,
     directives: [IssueAssigneeComponent, IssueProgressComponent],
