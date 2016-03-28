@@ -1,4 +1,4 @@
-System.register(["angular2/core", "./issue-assignee.component", "./issue-progress.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "./issue-assignee.component", "./issue-progress.component", "./jira-link.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "./issue-assignee.component", "./issue-progres
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, issue_assignee_component_1, issue_progress_component_1;
+    var core_1, issue_assignee_component_1, issue_progress_component_1, jira_link_component_1;
     var IssueComponent;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(["angular2/core", "./issue-assignee.component", "./issue-progres
             },
             function (issue_progress_component_1_1) {
                 issue_progress_component_1 = issue_progress_component_1_1;
+            },
+            function (jira_link_component_1_1) {
+                jira_link_component_1 = jira_link_component_1_1;
             }],
         execute: function() {
             IssueComponent = (function () {
@@ -41,8 +44,8 @@ System.register(["angular2/core", "./issue-assignee.component", "./issue-progres
                         host: {
                             '[class]': "issue.fields.issuetype.name",
                         },
-                        template: "\n        <div class=\"key\"><img [src]=\"issue.fields.issuetype.iconUrl\" /> <a href=\"//jira.cloud.rdlp/browse/{{issue.key}}\" target=\"_jira\">{{issue.key}}</a></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n        <issue-progress [issue]=\"issue\">progress</issue-progress>\n    ",
-                        directives: [issue_assignee_component_1.IssueAssigneeComponent, issue_progress_component_1.IssueProgressComponent],
+                        template: "\n        <div class=\"key\"><jira-link [issue]=\"issue\">.</jira-link></div>\n        <div class=\"summary\">{{issue.fields.summary}}</div>\n        <issue-assignee *ngIf=\"issue.fields.assignee\" [assignee]=\"issue.fields.assignee\">.</issue-assignee>\n        <issue-progress [issue]=\"issue\">progress</issue-progress>\n    ",
+                        directives: [issue_assignee_component_1.IssueAssigneeComponent, issue_progress_component_1.IssueProgressComponent, jira_link_component_1.JiraLinkComponent],
                         styles: [
                             ':host {border: 1px solid silver; position: relative; margin: 4px; padding: 4px;background-color: #E5EEFF}',
                             'issue-assignee {position: absolute; top: 2px; right: 2px}',
