@@ -42,7 +42,7 @@ export class AppComponent {
     errorMessage: string;
     issues: Issue[];
     filterId:number = 11401;
-    statuses:string[] = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved'];
+    statuses:string[] = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved', 'Closed'];
     versions:string[] = [];
     constructor (private _issueService: IssueService) {}
     handleFilterChange (arg) {

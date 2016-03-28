@@ -42,7 +42,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 }
                 FirstLevelIssuePipe.prototype.transform = function (value, args) {
                     if (value) {
-                        return value.filter(function (issue) { return !issue.fields.issuetype.subtask && issue.fields.subtasks.length == 0; });
+                        return value.filter(function (issue) { return issue.fields.subtasks.length == 0; });
                     }
                     return null;
                 };
@@ -80,7 +80,7 @@ System.register(["angular2/core"], function(exports_1, context_1) {
                 }
                 SwimLanePipe.prototype.transform = function (value, args) {
                     if (value) {
-                        return value.filter(function (issue) { return !issue.fields.subtask && issue.fields.subtasks.length > 0; });
+                        return value.filter(function (issue) { return issue.fields.subtasks.length > 0; });
                     }
                     return null;
                 };

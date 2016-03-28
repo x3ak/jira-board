@@ -34,7 +34,7 @@ System.register(['angular2/core', "./issue.service", "./issue.pipe", "./version.
                 function AppComponent(_issueService) {
                     this._issueService = _issueService;
                     this.filterId = 11401;
-                    this.statuses = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved'];
+                    this.statuses = ['Open', 'Reopened', 'Paused', 'In Progress', 'Resolved', 'Closed'];
                     this.versions = [];
                 }
                 AppComponent.prototype.handleFilterChange = function (arg) {
